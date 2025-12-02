@@ -106,15 +106,22 @@ async function openDay(day) {
   const answersDiv = document.getElementById("answers");
   answersDiv.innerHTML = "";
 
-  const options = ["A","B","C","D","E","F"];
+ const options = {
+  A: "Emil",
+  B: "Heiner",
+  C: "Hr. Chili",
+  D: "Larry",
+  E: "Nelly",
+  F: "Olivia"
+};
 
-  options.forEach(opt => {
-    const btn = document.createElement("button");
-    btn.className = "answer-btn";
-    btn.textContent = opt;
-    btn.onclick = () => submitAnswer(day, opt);
-    answersDiv.appendChild(btn);
-  });
+Object.keys(options).forEach(opt => {
+  const btn = document.createElement("button");
+  btn.className = "answer-btn";
+  btn.textContent = `${opt} = ${options[opt]}`;
+  btn.onclick = () => submitAnswer(day, opt);
+  answersDiv.appendChild(btn);
+});
 }
 
 async function submitAnswer(day, option) {
